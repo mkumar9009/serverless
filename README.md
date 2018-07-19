@@ -1,14 +1,48 @@
-## Welcome to GitHub Pages
+## Welcome to Serverless
 
-You can use the [editor on GitHub](https://github.com/mkumar9009/serverless/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This repository contains the functions on which I have worked upon.
+We are using AWS lambda service and [serverless framework](https://serverless.com/) to deploy all functions.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### Tasks
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+** SQS + Lambda Consumer + Lambda Workers **
 
-```markdown
+*** Language: Nodejs 8.10 ***
+
+Sending mass emails is an I/O bound process, if you have sufficient network bandwidth. Multi Threading is one way by which you can achieve the purpose.
+
+We get all the emails data in SQS and then we need to process that data to send it across million users via emails.
+
+So we decided to achieve this by dividin into two parts:
+
+- Creating a Lambda Consumer
+- Creating a Lambda Worker 
+
+Consumer reads from the queue at particular times and lanuches the no. of workers equal to the no. of messages in the queue. Since there is a limit to read max no. of messages from queue in a single access. We keep reading from queue and launching worker as long as there are messages in the queue.
+
+Each worker is a separate lambda function invoke which has its own time execution limits and infra resources.
+
+*** Scheduling the EC2 instances ***
+
+*** Language: Pyhton 2.7 ***
+
+Starting and stopping an ec2 instance in AWS is quite an easy task.
+
+boto3 is quite an handy module to connect to AWS resources like ec2.
+
+instances = ['i-xxxxxxxxxxxxxxx','i-xxxxxxxxxxxxxx']
+
+def lambda_handler(event, context):
+    ec2 = boto3.client('ec2', region_name=region)
+    ec2.start_instances(InstanceIds=instances)
+
+Above 3 lines do the task required.
+Stopping an instance is also quite similar.
+
+
+
+
 Syntax highlighted code block
 
 # Header 1
