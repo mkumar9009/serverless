@@ -1,14 +1,13 @@
-## Welcome to Serverless
+# Welcome to Serverless
 
 This repository contains the functions on which I have worked upon.
 We are using AWS lambda service and [serverless framework](https://serverless.com/) to deploy all functions.
 
 
-### Tasks
+## Tasks
+### SQS + Lambda Consumer + Lambda Workers **
 
-** SQS + Lambda Consumer + Lambda Workers **
-
-*** Language: Nodejs 8.10 ***
+** Language: Nodejs 8.10 **
 
 Sending mass emails is an I/O bound process, if you have sufficient network bandwidth. Multi Threading is one way by which you can achieve the purpose.
 
@@ -23,20 +22,20 @@ Consumer reads from the queue at particular times and lanuches the no. of worker
 
 Each worker is a separate lambda function invoke which has its own time execution limits and infra resources.
 
-*** Scheduling the EC2 instances ***
+### Scheduling the EC2 instances 
 
-*** Language: Pyhton 2.7 ***
+** Language: Pyhton 2.7 **
 
 Starting and stopping an ec2 instance in AWS is quite an easy task.
 
 boto3 is quite an handy module to connect to AWS resources like ec2.
-
+```
 instances = ['i-xxxxxxxxxxxxxxx','i-xxxxxxxxxxxxxx']
 
 def lambda_handler(event, context):
     ec2 = boto3.client('ec2', region_name=region)
     ec2.start_instances(InstanceIds=instances)
-
+```
 Above 3 lines do the task required.
 Stopping an instance is also quite similar.
 
