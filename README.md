@@ -7,7 +7,7 @@ We are using AWS lambda service and [serverless framework](https://serverless.co
 ## Tasks
 ### SQS + Lambda Consumer + Lambda Workers **
 
-** Language: Nodejs 8.10 **
+**Language: Nodejs 8.10**
 
 Sending mass emails is an I/O bound process, if you have sufficient network bandwidth. Multi Threading is one way by which you can achieve the purpose.
 
@@ -24,7 +24,7 @@ Each worker is a separate lambda function invoke which has its own time executio
 
 ### Scheduling the EC2 instances 
 
-** Language: Pyhton 2.7 **
+**Language: Pyhton 2.7**
 
 Starting and stopping an ec2 instance in AWS is quite an easy task.
 
